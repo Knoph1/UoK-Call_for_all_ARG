@@ -15,20 +15,36 @@
         .header {
             display: flex;
             align-items: center;
+            flex-direction: row;
             justify-content: space-between;
-            margin: 20px 0;
+            width: 100%;
         }
 
-        .header img {
-            height: 50px;
-            /* Adjust the size of the logo */
-            margin-right: 20px;
+        .img_holder {
+            flex: 0 0 auto;
+            width: 100px;
         }
 
-        .header .title {
-            flex-grow: 1;
-            text-align: center;
+        .img_holder img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
         }
+
+        .title {
+            text-align: right;
+            width: 700px;
+        }
+
+        .title h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .title p {
+            margin: 2px 0;
+        }
+
 
         .header h1 {
             font-size: 18px;
@@ -36,13 +52,17 @@
         }
 
         .content {
-            margin: 20px 0;
+            /* margin: 20px 0; */
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+        }
+
+        .table .tablekeycolumn {
+            width: 150px;
         }
 
         .table,
@@ -63,7 +83,7 @@
 
         .section-title {
             font-size: 16px;
-            margin-top: 20px;
+            margin-top: 4px;
             margin-bottom: 10px;
             font-weight: bold;
         }
@@ -78,19 +98,33 @@
 
 <body>
     <div class="header">
-        <img src="'. public_path() .'/images/logo.png" alt="University Logo">
-        <div class="title">
-            <h1>UoK Final Research Proposal</h1>
-            <p>Proposal Code: {{ $proposal->proposalcode }}</p>
-            <p>Date Printed: {{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</p>
-        </div>
+        <table style="width: 100%; margin: 0px; border-collapse: collapse;">
+            <tr>
+                <!-- Logo -->
+                <td style="width: 100px; vertical-align: middle;">
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/logo.png'))) }}"
+                        alt="University Logo" style="width: 100px; height: auto;" />
+                </td>
+
+                <!-- Title and Proposal Info -->
+                <td style="text-align: center; vertical-align: middle;">
+                    <h1 style="font-size: 18px; margin: 0;">UoK Draft Research Proposal</h1>
+                    <p style="margin: 4px 0;">Proposal Code: {{ $proposal->proposalcode }}</p>
+                    <p style="margin: 4px 0;">Date Printed: {{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</p>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div>
+        <hr />
     </div>
     <div class="content">
 
-        <div class="section-title">Applicant Details</div>
+        <div class="section-title">A: Applicant Details</div>
         <table class="table">
             <tr>
-                <th>Name</th>
+                <th class="tablekeycolumn">Name</th>
                 <td>{{ $proposal->applicant->name }}</td>
             </tr>
             <tr>
@@ -107,10 +141,10 @@
             </tr>
         </table>
 
-        <div class="section-title">Proposal Details</div>
+        <div class="section-title">B: Proposal Head</div>
         <table class="table">
             <tr>
-                <th>Research Title</th>
+                <th class="tablekeycolumn">Research Title</th>
                 <td>{{ $proposal->researchtitle }}</td>
             </tr>
             <tr>
@@ -131,29 +165,29 @@
             </tr>
         </table>
 
-        <div class="section-title">Research Objectives</div>
+        <div class="section-title">C: Research Objectives</div>
         <p>{{ $proposal->objectives }}</p>
 
-        <div class="section-title">Hypothesis</div>
+        <div class="section-title">D: Hypothesis</div>
         <p>{{ $proposal->hypothesis }}</p>
 
-        <div class="section-title">Significance</div>
+        <div class="section-title">E: Significance</div>
         <p>{{ $proposal->significance }}</p>
 
-        <div class="section-title">Ethical Considerations</div>
+        <div class="section-title">F: Ethical Considerations</div>
         <p>{{ $proposal->ethicals }}</p>
 
-        <div class="section-title">Expected Output</div>
+        <div class="section-title">G: Expected Output</div>
         <p>{{ $proposal->expoutput }}</p>
 
-        <div class="section-title">Social Impact</div>
+        <div class="section-title">H: Social Impact</div>
         <p>{{ $proposal->socio_impact }}</p>
 
-        <div class="section-title">Research Findings</div>
+        <div class="section-title">I: Research Findings</div>
         <p>{{ $proposal->res_findings }}</p>
 
         <!-- Expenditures Section -->
-        <div class="section-title">Expenditures</div>
+        <div class="section-title"> J: Expenditures</div>
         <table class="table">
             <tr>
                 <th>Item</th>
@@ -170,7 +204,7 @@
         </table>
 
         <!-- Research Design Section -->
-        <div class="section-title">Research Design</div>
+        <div class="section-title">K: Research Design</div>
         <table class="table">
             <tr>
                 <th>Summary</th>
@@ -187,7 +221,7 @@
         </table>
 
         <!-- Workplan Section -->
-        <div class="section-title">Workplan</div>
+        <div class="section-title">L: Workplan</div>
         <table class="table">
             <tr>
                 <th>Activity</th>
@@ -207,7 +241,7 @@
 
 
         <!-- Collaborators Section -->
-        <div class="section-title">Collaborators</div>
+        <div class="section-title">M: Collaborators</div>
         <table class="table">
             <tr>
                 <th>Name</th>
@@ -224,7 +258,7 @@
         </table>
 
         <!-- Publications Section -->
-        <div class="section-title">Publications</div>
+        <div class="section-title">N: Publications</div>
         <table class="table">
             <tr>
                 <th>Title</th>
@@ -239,7 +273,7 @@
                 </tr>
             @endforeach
         </table>
-        <div class="section-title">Additional Comments</div>
+        <div class="section-title">O: Additional Comments</div>
         <p>{{ $proposal->comment }}</p>
 
     </div>

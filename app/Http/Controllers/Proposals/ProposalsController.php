@@ -86,9 +86,10 @@ class ProposalsController extends Controller
         $grant = Grant::findOrFail($request->input('grantnofk'));
         // Generate proposal code 
         $currentYear = date('Y');
+        $currentMonth = date('Y');
         $lastRecord = Proposal::orderBy('proposalid', 'desc')->first();
         $incrementNumber = $lastRecord ? $lastRecord->proposalid + 1 : 1;
-        $generatedCode = 'UOK/ARG/A/' . $currentYear . '/' . $incrementNumber;
+        $generatedCode = 'UOK/ARG/P/' . $currentYear . '/' . $currentMonth . '/' . $incrementNumber;
 
         // Create a new proposal instance
         $proposal = new Proposal();
@@ -434,7 +435,7 @@ class ProposalsController extends Controller
         // Optionally, you can set the paper size and orientation
         $pdf->setPaper('A4', 'potrait');
         // Return the generated PDF 
-        return $pdf->download('Application-' . str_replace('/', '-', $proposal->proposalcode).'.pdf');
+        return $pdf->download('Application-' . str_replace('/', '-', $proposal->proposalcode) . '.pdf');
         // return $pdf->stream();
     }
     public function geteditsingleproposalpage(Request $req, $id)
