@@ -78,7 +78,7 @@
 
 <body>
     <div class="header">
-        <img src="{{ public_path('images/logo.png') }}" alt="University Logo" />
+        <img src="{{ asset(path: 'images/logo.png') }}" alt="University Logo">
         <div class="title">
             <h1>UoK Final Research Proposal</h1>
             <p>Proposal Code: {{ $proposal->proposalcode }}</p>
