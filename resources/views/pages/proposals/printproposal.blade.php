@@ -78,7 +78,7 @@
 
 <body>
     <div class="header">
-        <img src="{{ asset('images/logo.png')}}" alt="University Logo" />
+        <img src="{{ public_path('images/logo.png') }}" alt="University Logo" />
         <div class="title">
             <h1>UoK Final Research Proposal</h1>
             <p>Proposal Code: {{ $proposal->proposalcode }}</p>
@@ -160,7 +160,7 @@
                 <th>Type</th>
                 <th>Total</th>
             </tr>
-            @foreach($proposal->expenditures as $expenditure)
+            @foreach ($proposal->expenditures as $expenditure)
                 <tr>
                     <td>{{ $expenditure->item }}</td>
                     <td>{{ $expenditure->itemtype }}</td>
@@ -177,7 +177,7 @@
                 <th>Indicators</th>
                 <th>Goal</th>
             </tr>
-            @foreach($proposal->researchdesigns as $design)
+            @foreach ($proposal->researchdesigns as $design)
                 <tr>
                     <td>{{ $design->summary }}</td>
                     <td>{{ $design->indicators }}</td>
@@ -195,7 +195,7 @@
                 <th>Input</th>
                 <th>By Who</th>
             </tr>
-            @foreach($proposal->workplans as $workplan)
+            @foreach ($proposal->workplans as $workplan)
                 <tr>
                     <td>{{ $workplan->activity }}</td>
                     <td>{{ $workplan->time }}</td>
@@ -214,7 +214,7 @@
                 <th>Role</th>
                 <th>Institution</th>
             </tr>
-            @foreach($proposal->collaborators as $collaborator)
+            @foreach ($proposal->collaborators as $collaborator)
                 <tr>
                     <td>{{ $collaborator->collaboratorname }}</td>
                     <td>{{ $collaborator->position }}</td>
@@ -231,7 +231,7 @@
                 <th>Publisher</th>
                 <th>Year</th>
             </tr>
-            @foreach($proposal->publications as $publication)
+            @foreach ($proposal->publications as $publication)
                 <tr>
                     <td>{{ $publication->title }}</td>
                     <td>{{ $publication->publisher }}</td>
