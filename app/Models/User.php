@@ -86,13 +86,13 @@ class User extends Authenticatable
     public function sendEmailVerificationNotification()
     {
         $this->notify(new CustomVerifyEmailNotification());
-    } 
+    }
 
-    //functions
+    //functions 
     public function permissions()
     {
-        if ($this->isadmin) {            
-            return Permission::where('issuperadminright',true)->orderBy('priorityno');
+        if ($this->isadmin) {
+            return Permission::where('issuperadminright', true)->orderBy('priorityno');
         } else {
 
             return $this->belongsToMany(Permission::class, 'userpermissions', 'useridfk', 'permissionidfk')->orderBy('priorityno');
@@ -145,7 +145,7 @@ class User extends Authenticatable
     {
         try {
             $proposal = Proposal::findOrFail($proposalid);
-            if ($this->haspermission('canrejectproposal') && ($proposal->useridfk != $this->userid) && $proposal->receivedstatus && $proposal->approvalstatus == 'Pending' ) {
+            if ($this->haspermission('canrejectproposal') && ($proposal->useridfk != $this->userid) && $proposal->receivedstatus && $proposal->approvalstatus == 'Pending') {
                 return true;
             } else {
                 return false;
@@ -196,7 +196,7 @@ class User extends Authenticatable
             return false;
         }
 
-    } 
+    }
     public function candisableediting($proposalid)
     {
         try {
@@ -210,5 +210,5 @@ class User extends Authenticatable
             return false;
         }
 
-    } 
+    }
 }

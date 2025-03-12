@@ -34,10 +34,9 @@ class RegisterController extends Controller
         $user->pfno = $validatedData['pfno'];
         $user->phonenumber = $validatedData['phonenumber'];
         $user->password = Hash::make($validatedData['password']);
-        $user->role = 2;
+        $user->role = 0; //default user role
         $user->isadmin = 0;
-        $user->isactive = 0;
-        // $user->isactive=1;
+        $user->isactive = 0; 
         $user->save();
 
         // Redirect to login page with success message

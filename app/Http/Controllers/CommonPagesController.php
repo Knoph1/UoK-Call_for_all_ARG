@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class CommonPagesController extends Controller
 {
@@ -19,8 +20,25 @@ class CommonPagesController extends Controller
     //
     public function setupadmin()
     {
-        return view('pages.common.setupadmin');
+        $allusers = User::all();
+        return view('pages.common.setupadmin', compact('allusers'));
     }
+
+
+    public function makeInitialAdmin(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,userid',
+        ]);
+
+        $user = User::findOrFail($request->user_id);
+        $user->isadmin = true;
+        $user->role = 1;
+        $user->save();
+
+        return redirect()->back()->with('success', 'User has been set as Admin.');
+    }
+
     //About ARG portal page
     public function about()
     {

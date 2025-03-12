@@ -52,6 +52,7 @@ Route::get('/about', [CommonPagesController::class, 'about'])->name('pages.about
 Route::get('/contact', [CommonPagesController::class, 'contact'])->name('pages.contact');
 Route::get('/resetpassword', [CommonPagesController::class, 'resetpassword'])->name('pages.resetpassword');
 Route::get('/setupadmin', [CommonPagesController::class, 'setupadmin'])->name('pages.setupadmin');
+Route::post('/setupadmin', [CommonPagesController::class, 'makeInitialAdmin'])->name('api.makeinitialadmin');
 
 //custom password reset
 Route::get('password/reset', [CustomPasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
