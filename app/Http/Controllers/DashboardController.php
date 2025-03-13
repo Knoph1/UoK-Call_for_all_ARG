@@ -16,19 +16,19 @@ class DashboardController extends Controller
         // Get the current user's ID
         $userid = auth()->user()->userid;
         $proposals = Proposal::where('useridfk', $userid)->get();
-        $proposalsids = $proposals->pluck('proposalid'); 
+        $proposalsids = $proposals->pluck('proposalid');
         $projects = ResearchProject::whereIn('proposalidfk', $proposalsids)->get();
-        $projectsids = $projects->pluck('researchid'); 
+        $projectsids = $projects->pluck('researchid');
         $fundings = ResearchFunding::whereIn('researchidfk', $projectsids)->get();
 
         // Get  proposals count
         $totalProposals = $proposals->count();
-        $approvedProposals =  $proposals->where('approvalstatus', 'approved')->count();
-        $rejectedProposals =$proposals->where('approvalstatus', 'rejected')->count();
+        $approvedProposals = $proposals->where('approvalstatus', 'approved')->count();
+        $rejectedProposals = $proposals->where('approvalstatus', 'rejected')->count();
         $pendingProposals = $proposals->where('approvalstatus', 'pending')->count();
         //get projects counts
-        $activeprojects =  $projects->where('projectstatus', 'Active')->count();
-        $cancelledprojects =$projects->where('projectstatus', 'Cancelled')->count();
+        $activeprojects = $projects->where('projectstatus', 'Active')->count();
+        $cancelledprojects = $projects->where('projectstatus', 'Cancelled')->count();
         $completedprojects = $projects->where('projectstatus', 'Completed')->count();
         //total funds
         $totalAmountReceived = $fundings->sum('amount');
@@ -123,7 +123,7 @@ class DashboardController extends Controller
             return [];
         }
 
-        $proposalsQuery = Proposal::with('department', 'grantitem', 'themeitem', 'applicant');
+        $proposalsQuery = Proposal::with('department', 'grantitem', 'themeitem', 'applicant')->where('submittedstatus', true);
 
 
         $themes = ResearchTheme::all();

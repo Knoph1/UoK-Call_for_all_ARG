@@ -370,7 +370,7 @@
                     </form>
                     <!-- Collaborators details table -->
                     <div class="row form-group">
-                        <div>collaborators</div>
+                        <div>Collaborators</div>
                         <div style="max-height: 300px; overflow-y: auto;">
                             <table id="collaboratorstable"
                                 class="table table-responsive table-bordered table-striped table-hover" style="margin:4px">
@@ -394,7 +394,7 @@
                     </div>
                     <!-- publications table -->
                     <div class="row form-group">
-                        <div>publications</div>
+                        <div>Publications</div>
                         <div style="max-height: 300px; overflow-y: auto;">
 
                             <table id="publicationstable"
@@ -1629,7 +1629,7 @@
         <br /><br /><br />
         <h4>There are no Open Calls for Grant this Year</h4>
         <br /><br />
-        <a href="{{route('pages.dashboard')}}">Go Back to Dashboard</a>
+        <a href="{{route('pages.home')}}">Go Back to Home</a>
     </div>
 @endif 
 @endsection

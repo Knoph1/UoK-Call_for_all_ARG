@@ -44,10 +44,13 @@ class ProposalsController extends Controller
         $themes = ResearchTheme::all();
         $user = auth()->user();
         $currentgrant = GlobalSetting::where('item', 'current_open_grant')->first();
-        $grants = Grant::where('grantid', $currentgrant->value1)
-            ->whereDoesntHave('proposals', function ($query) use ($user) {
-                $query->where('useridfk', $user->userid);
-            })->get();
+        $grants = null;
+        if ($currentgrant) {
+            $grants = Grant::where('grantid', $currentgrant->value1)
+                ->whereDoesntHave('proposals', function ($query) use ($user) {
+                    $query->where('useridfk', $user->userid);
+                })->get();
+        }
 
         return view('pages.proposals.proposalform', compact('isnewprop', 'departments', 'grants', 'themes'));
     }
@@ -435,8 +438,8 @@ class ProposalsController extends Controller
         // Optionally, you can set the paper size and orientation
         $pdf->setPaper('A4', 'potrait');
         // Return the generated PDF 
-        return $pdf->download('Application-' . str_replace('/', '-', $proposal->proposalcode) . '.pdf');
-        // return $pdf->stream();
+        // return $pdf->download('Application-' . str_replace('/', '-', $proposal->proposalcode) . '.pdf');
+        return $pdf->stream();
     }
     public function geteditsingleproposalpage(Request $req, $id)
     {

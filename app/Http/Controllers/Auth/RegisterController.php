@@ -34,9 +34,9 @@ class RegisterController extends Controller
         $user->pfno = $validatedData['pfno'];
         $user->phonenumber = $validatedData['phonenumber'];
         $user->password = Hash::make($validatedData['password']);
-        $user->role = 0; //default user role
+        $user->role = 3; //default user role guest
         $user->isadmin = 0;
-        $user->isactive = 0; 
+        $user->isactive = 1;
         $user->save();
 
         // Redirect to login page with success message
@@ -54,12 +54,11 @@ class RegisterController extends Controller
 
         // Create an instance of MailingController and call the sendMail function
         $mailingController = new MailingController();
-        $mailresponse=$mailingController->sendMail($recipientEmail, $details);
-        if($mailresponse['issuccess']){
+        $mailresponse = $mailingController->sendMail($recipientEmail, $details);
+        if ($mailresponse['issuccess']) {
             return response(['message' => 'Password reset mail sent Successfully!', 'type' => 'success']);
-        }
-        else{
-            return response(['message' =>  $mailresponse['message'], 'type' => 'danger']);
+        } else {
+            return response(['message' => $mailresponse['message'], 'type' => 'danger']);
         }
     }
 }

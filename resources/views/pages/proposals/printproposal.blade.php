@@ -101,16 +101,14 @@
         <table style="width: 100%; margin: 0px; border-collapse: collapse;">
             <tr>
                 <!-- Logo -->
-                <td style="width: 100px; vertical-align: middle;">
-                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/logo.png'))) }}"
-                        alt="University Logo" style="width: 100px; height: auto;" />
-                </td>
-
-                <!-- Title and Proposal Info -->
                 <td style="text-align: center; vertical-align: middle;">
-                    <h1 style="font-size: 18px; margin: 0;">UoK Draft Research Proposal</h1>
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/logo.png'))) }}"
+                        alt="University Logo" style="text-align: center; width: 60px; height: auto;" />
+                    <h1 style="font-size: 14px; margin: 0;"><u>UNIVERSITY OF KABIANGA</u></h1>
+                    <br />
                     <p style="margin: 4px 0;">Proposal Code: {{ $proposal->proposalcode }}</p>
                     <p style="margin: 4px 0;">Date Printed: {{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</p>
+                    <h4 style="font-size: 12px; margin: 0;">RESEARCH PROPOSAL</h4>
                 </td>
             </tr>
         </table>

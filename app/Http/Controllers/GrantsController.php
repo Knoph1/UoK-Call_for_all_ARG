@@ -187,7 +187,7 @@ class GrantsController extends Controller
         // Validate incoming request data if needed
         // Define validation rules
         $rules = [ 
-            'current_finyear' => 'required|string',
+            'current_fin_year' => 'required|string',
         ];
 
 
@@ -203,7 +203,7 @@ class GrantsController extends Controller
         }
 
         $item = GlobalSetting::where('item','current_fin_year')->firstOrFail(); 
-        $item->value1 = $request->input('current_finyear'); 
+        $item->value1 = $request->input('current_fin_year'); 
         $item->save();
 
         // Optionally, return a response or redirect
