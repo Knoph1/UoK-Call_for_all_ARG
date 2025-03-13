@@ -212,7 +212,7 @@
                     switch (roleid) {
                         case 1: return 'Committee';
                         case 2: return 'Researcher';
-                        case 3: return 'Co-opted';
+                        case 3: return 'Guest';
                         default: return 'Unknown';
                     }
                 }

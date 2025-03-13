@@ -136,7 +136,7 @@
           return 'Researcher';
           }
           else if (roleid == 3) {
-          return 'Co-opted';
+          return 'Guest';
           }
           else {
           return 'unknown';

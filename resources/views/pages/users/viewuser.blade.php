@@ -210,7 +210,7 @@
                                         <option value="2" {{ (isset($user) && $user->role == "2") ? 'selected' : '' }}>
                                             Researcher</option>
                                         <option value="3" {{ (isset($user) && $user->role == "3") ? 'selected' : '' }}>
-                                            Co-opted</option>
+                                            Guest</option>
                                     </select>
                                 </div>
                             </div>
